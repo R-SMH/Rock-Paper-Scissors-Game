@@ -1,0 +1,70 @@
+import time
+import random
+print("Rock, Paper, Scissors")
+
+def Conditions(Choice_tuple):
+    WinCombinations = [('r','s'),('p','r'),('s','p')]
+    # WinCombinations = [('r','s'),('p','r'),('s','p'),('R','s'),('P','r'),('S','p')]
+    # LoseCombinations= [('r','p'),('p','s'),('s','r'),('R','p'),('P','s'),('S','r')]
+ 
+        
+    if Choice_tuple in WinCombinations:
+        return -1
+    
+    elif Choice_tuple[0].upper() == Choice_tuple[1].upper():
+        return 0
+    
+    else:
+        '''if Choice_tuple not in WinCombinations:'''
+        return 1
+        
+
+
+def Game():
+    Moves = ['r','p','s']
+    PlayerInput = None
+
+    while(PlayerInput != 'n'): # GameLoop
+
+        print("Pick one of These:")
+        print("'r' for Rock, 'p' for paper, 's' for Scissors, 'n' for exit")
+        PlayerInput=input("Player Entry:")
+        PlayerInput=PlayerInput.lower() # This function helps eradicate the case issue, i.e. not including same letter of different cases
+        if (PlayerInput == 'n'):
+            break
+
+        elif (PlayerInput not in Moves):
+            print("Wrong Entry")
+
+        else:
+            time.sleep(2)
+            CPUInput = Moves[(random.randint(0,2))]
+            # CPUInput = 'p'
+            Result=Conditions((PlayerInput.lower(), CPUInput))
+
+            if Result < 0:
+                print("You win")
+                
+            elif Result > 0:
+                print("You Lose")
+            else:
+                print("tie")
+
+            print(f"CPU chose:{CPUInput}")
+
+            time.sleep(2)
+            PlayerInput=input("Enter Anything to play again:")
+            PlayerInput=PlayerInput.lower()
+
+    print("Until next time")
+    time.sleep(3)
+        
+        
+# Title
+# Game will be inside an infinite loop
+# Use MatchCase to match cases
+# One Variable will store Player's Entry
+# Another will store CPU's Entry
+# 
+
+Game()
